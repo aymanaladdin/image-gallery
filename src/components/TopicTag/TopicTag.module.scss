@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.topic-tag {
+    margin: 0.2rem;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: $helper;
+    background-color: $helper-two;
+    border-radius: 1rem;
+    text-align: center;
+    &:hover {
+        background-color: $primary;
+        color: $secondary;
+    }
+}

@@ -1,0 +1,24 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+  background-color: #f7f6f4;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+.page-wrapper {
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
