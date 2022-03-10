@@ -4,13 +4,12 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import { imageURL } from '@lib/constants';
-import { getImgQuerystring, httpClient, swrConfig } from '@lib/helpers';
+import { getFilledArray, getImgQueryString, httpClient, swrConfig } from '@lib/helpers';
 import { Image, ResponseBody } from '@lib/types';
 import { PagePagination } from '@components/PagePagination';
 import { ImageItem } from '@components/ImageItem';
 import { ImageListProps } from './types';
 import { EmptyList } from '@components/EmptyList';
-import { SearchInput } from '@components/SearchInput';
 
 import styles from './ImageList.module.scss';
 
@@ -18,7 +17,7 @@ export const ImageList = ({ topic, search }: ImageListProps) => {
   const [page, setPage] = useState(1)
   const router = useRouter()
 
-  const { data, error } = useSWR<ResponseBody<Image[]>>(`${imageURL}?${getImgQuerystring(page, topic, search)}`, httpClient, swrConfig)
+  const { data, error } = useSWR<ResponseBody<Image[]>>(`${imageURL}?${getImgQueryString(page, topic, search)}`, httpClient, swrConfig)
 
   useEffect(() => { setPage(1) }, [search])
 
@@ -26,7 +25,10 @@ export const ImageList = ({ topic, search }: ImageListProps) => {
 
   if (!data) return (
     <div className={styles['image-list']}>
-      {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((_, index) => <Skeleton key={index} containerClassName='skeleton-wrapper' height={330} />)}
+      {
+        getFilledArray(15)
+          .map((_, index) => <Skeleton key={index} containerClassName='skeleton-wrapper' height={330} />)
+      }
     </div>
   )
 

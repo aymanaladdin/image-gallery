@@ -24,7 +24,7 @@ export const ImageListContainer = ({ topic }: ImageListProps) => {
     <>
       <div className={styles['header-wrapper']}>
         <BreadCrumbs segments={segments} />
-        <SearchInput search={search} onSearchChange={onSearchChange} placeholder='Search images by description.' />
+        <SearchInput search={search} onSearchChange={onSearchChange} placeholder='Search by image description or user.' />
       </div>
       <ImageList topic={topic} search={search} />
     </>

@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 
 import { CollectionItem } from '@components/CollectionItem';
 import { topicsURL } from '@lib/constants';
-import { httpClient } from '@lib/helpers';
+import { getFilledArray, getTopicQueryString, httpClient, swrConfig } from '@lib/helpers';
 import { ResponseBody, Topic } from '@lib/types';
 
 
@@ -14,12 +14,15 @@ import { PagePagination } from '@components/PagePagination';
 export const CollectionList = () => {
   const [page, setPage] = useState(1)
 
-  const { data, error } = useSWR<ResponseBody<Topic[]>>(`${topicsURL}?page=${page}&per_page=10`, httpClient, { shouldRetryOnError: false, revalidateOnFocus: false })
+  const { data, error } = useSWR<ResponseBody<Topic[]>>(`${topicsURL}?${getTopicQueryString(page)}`, httpClient, swrConfig)
 
   if (error) return <div>{'Failed to load Collections'}</div>
   if (!data) return (
     <div className={styles['collection-list']}>
-      {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((_, index) => <Skeleton key={index} containerClassName='skeleton-wrapper' height={250} />)}
+      {
+        getFilledArray(10)
+          .map((_, index) => <Skeleton key={index} containerClassName='skeleton-wrapper' height={250} />)
+      }
     </div>
   )
   return (
