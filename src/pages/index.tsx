@@ -16,13 +16,13 @@ const Home: NextPage = () => {
   )
 }
 
-export async function getStaticProps() {
+// export async function getStaticProps() {
 
-  return {
-    redirect: {
-      destination: "/collections",
-    }
-  }
-}
+//   return {
+//     redirect: {
+//       destination: "/collections",
+//     }
+//   }
+// }
 
 export default Home
