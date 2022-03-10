@@ -1,22 +1,28 @@
 import useSWR from 'swr';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import { imageURL } from '@lib/constants';
-import { httpClient } from '@lib/helpers';
+import { getImgQuerystring, httpClient, swrConfig } from '@lib/helpers';
 import { Image, ResponseBody } from '@lib/types';
-import { ImageListProps } from './types';
 import { PagePagination } from '@components/PagePagination';
 import { ImageItem } from '@components/ImageItem';
+import { ImageListProps } from './types';
+import { EmptyList } from '@components/EmptyList';
+import { SearchInput } from '@components/SearchInput';
 
 import styles from './ImageList.module.scss';
 
-export const ImageList = ({ topic }: ImageListProps) => {
+export const ImageList = ({ topic, search }: ImageListProps) => {
   const [page, setPage] = useState(1)
+  const router = useRouter()
 
-  const { data, error } = useSWR<ResponseBody<Image[]>>(`${imageURL}?page=${page}&per_page=10&topic=${topic}`, httpClient, { shouldRetryOnError: false })
+  const { data, error } = useSWR<ResponseBody<Image[]>>(`${imageURL}?${getImgQuerystring(page, topic, search)}`, httpClient, swrConfig)
 
-  if (error) return <div>{'Failed to load Collections'}</div>
+  useEffect(() => { setPage(1) }, [search])
+
+  if (error) router.push('/500')
 
   if (!data) return (
     <div className={styles['image-list']}>
@@ -25,11 +31,12 @@ export const ImageList = ({ topic }: ImageListProps) => {
   )
 
   return (
-    <>
-      <div className={styles['image-list']}>
-        {data?.data?.map((image, index) => <ImageItem key={index} image={image} />)}
-      </div>
-      <PagePagination page={data.pagination.page} totalPages={data.pagination.totalPages} setPage={setPage} />
-    </>
+    !data.data.length ? (<EmptyList />) :
+      (<>
+        <div className={styles['image-list']}>
+          {data?.data?.map((image, index) => <ImageItem key={index} image={image} />)}
+        </div>
+        <PagePagination page={data.pagination.page} totalPages={data.pagination.totalPages} setPage={setPage} />
+      </>)
   )
 }

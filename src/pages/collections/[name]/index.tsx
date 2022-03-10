@@ -1,21 +1,13 @@
-import type { GetServerSidePropsContext, NextPage, NextPageContext } from 'next'
+import type { GetServerSidePropsContext, NextPage } from 'next'
 
-import { PageTitle } from '@components/PageTitle'
-import { httpClient, purifyText } from '@lib/helpers'
+import { httpClient } from '@lib/helpers'
 import { imageURL } from '@lib/constants'
-import { ImageList } from '@components/ImageList'
-import { BreadCrumbs } from '@components/BreadCrumbs'
+import { ImageListContainer } from '@components/ImageListContainer'
 
 const Collection: NextPage<{ collectionName: string }> = ({ collectionName }) => {
-  const segments = [
-    { label: 'collections', url: '/collections' },
-    { label: purifyText(collectionName) }
-  ]
-
   return (
     <div className="page-wrapper">
-      <BreadCrumbs segments={segments} />
-      <ImageList topic={collectionName} />
+      <ImageListContainer topic={collectionName} />
     </div>
   )
 }

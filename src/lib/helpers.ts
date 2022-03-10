@@ -9,3 +9,9 @@ export const httpClient = async (...args: [input: RequestInfo, init?: RequestIni
 }
 
 export const purifyText = (text: string = '') => text.replaceAll('-', ' ')
+
+export const getImgQuerystring = (page: number, topic: string, search: string = '') => (
+    `page=${page}&per_page=10${topic ? '&topic=' + topic : ''}${search.length >= 3 ? '&search_text=' + search.trim().toLowerCase() : ''}`
+)
+
+export const swrConfig = { shouldRetryOnError: false, revalidateOnFocus: false };
