@@ -3,10 +3,14 @@
 .collection-list {
     min-height: 75vh;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     grid-gap: 1rem;
     align-items: start;
     justify-items: center;
     width: 100%;
     padding-block: 1rem;
+
+    @media only screen and (min-width: 1024px) {
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    }
 }
