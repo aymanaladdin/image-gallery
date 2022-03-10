@@ -1,0 +1,64 @@
+@import "../../styles/variables";
+
+.image-item {
+  border-radius: 0.4rem;
+  transition: 0.3s;
+  height: 30rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.2rem;
+
+  .image-wrapper {
+    cursor: pointer;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 #00000033;
+
+    img {
+      border-radius: 0.4rem;
+      transition: all 0.3s ease-out;
+    }
+
+    .user-overlay {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 3;
+      padding: 0.4rem 0.8rem;
+      color: $white;
+      background-color: $overlay;
+      font-size: 1rem;
+
+      span {
+        margin-left: 0.4rem;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 8px 16px 0 #00000033;
+      img {
+        transform: scale(1.2, 1.2);
+      }
+
+      .user-overlay {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .topics-wrapper {
+    padding-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    span {
+      padding-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+  }
+}

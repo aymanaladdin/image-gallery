@@ -1,0 +1,41 @@
+@import "../../styles/variables";
+
+.pagination {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    .info {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+    .next,
+    .prev {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-inline: 1rem;
+
+        width: 6rem;
+        height: 2.5rem;
+        cursor: pointer;
+
+        color: $primary;
+        border-radius: 0.4rem;
+
+        &:hover {
+            background-color: $secondary;
+        }
+
+        &.disabled {
+            cursor: not-allowed;
+        }
+
+        span {
+            padding-inline: 0.5rem;
+        }
+    }
+}

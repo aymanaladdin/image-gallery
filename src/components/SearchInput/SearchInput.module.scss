@@ -1,0 +1,53 @@
+@import "../../styles/variables";
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    height: 2.2rem;
+    width: 100%;
+
+    @media only screen and (min-width: 768px) {
+        width: 50%;
+        height: auto;
+    }
+    @media only screen and (min-width: 1440px) {
+        width: auto;
+    }
+
+    .search {
+        border: 0.1rem solid $helper;
+        border-radius: 0.5rem;
+        height: 90%;
+        width: 50rem;
+        padding: 0.2rem 2.3rem 0.2rem 3rem;
+        outline: 0;
+        background-color: $main-bg;
+        font-size: 0.8rem;
+        @media only screen and (min-width: 769px) {
+            font-size: 0.8rem;
+        }
+
+        &:hover,
+        &:focus {
+            border: 0.1rem solid $primary;
+            background-color: $white;
+        }
+
+        &::placeholder {
+            color: gray;
+        }
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 1rem;
+        width: 1.4rem;
+        color: gray;
+        top: 0.1rem;
+        @media only screen and (min-width: 769px) {
+            top: 0.4rem;
+        }
+    }
+}

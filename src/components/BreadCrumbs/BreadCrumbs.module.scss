@@ -1,0 +1,24 @@
+@import "../../styles/variables";
+
+.bread-crumbs-wrapper {
+    display: flex;
+
+    .link,
+    .separator,
+    .label {
+        font-size: 1.4rem;
+        color: $helper;
+        text-transform: capitalize;
+    }
+
+    .link {
+        cursor: pointer;
+        &:hover {
+            color: $primary;
+        }
+    }
+
+    .separator {
+        margin-inline: 0.5rem;
+    }
+}
