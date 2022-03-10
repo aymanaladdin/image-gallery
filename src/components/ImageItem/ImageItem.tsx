@@ -11,7 +11,7 @@ export const ImageItem = ({ image }: ImageItemProps) => {
   return (
     <div className={styles['image-item']}>
       <a href={image.link} target='_blank' rel="noreferrer" className={styles['image-wrapper']}>
-        <Image src={image.url} alt='image-item' layout='fill' priority objectFit='cover' placeholder='blur' blurDataURL={image.url} />
+        <Image src={image.url} alt='image-item' layout='fill' priority objectFit='cover' sizes='25vw' />
         <span className={styles['user-overlay']}>
           <FontAwesomeIcon icon={faUserCircle} />
           <span>{image.user}</span>

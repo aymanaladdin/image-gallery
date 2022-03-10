@@ -1,5 +1,6 @@
 import useSWR from 'swr';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import { CollectionItem } from '@components/CollectionItem';
 import { topicsURL } from '@lib/constants';
@@ -16,8 +17,11 @@ export const CollectionList = () => {
   const { data, error } = useSWR<ResponseBody<Topic[]>>(`${topicsURL}?page=${page}&per_page=10`, httpClient, { shouldRetryOnError: false, revalidateOnFocus: false })
 
   if (error) return <div>{'Failed to load Collections'}</div>
-  if (!data) return <div>{'Loading collections'}</div>
-
+  if (!data) return (
+    <div className={styles['collection-list']}>
+      {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((_, index) => <Skeleton key={index} containerClassName='skeleton-wrapper' height={250} />)}
+    </div>
+  )
   return (
     <>
       <div className={styles['collection-list']}>
