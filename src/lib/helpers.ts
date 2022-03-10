@@ -8,7 +8,7 @@ export const httpClient = async (...args: [input: RequestInfo, init?: RequestIni
     throw new Error(errorMsg)
 }
 
-export const purifyText = (text: string = '') => text.replace(/\s/g, ' ')
+export const purifyText = (text: string = '') => text.replace(/\-/g, ' ')
 
 export const getImgQueryString = (page: number, topic: string, search: string = '') => (
     `page=${page}&per_page=50${topic ? '&topic=' + topic : ''}${search.length >= 3 ? '&search_text=' + search.trim().toLowerCase() : ''}`
