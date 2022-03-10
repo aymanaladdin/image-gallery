@@ -19,7 +19,7 @@ export const ImageList = ({ topic, search }: ImageListProps) => {
 
   const { data, error } = useSWR<ResponseBody<Image[]>>(`${imageURL}?${getImgQueryString(page, topic, search)}`, httpClient, swrConfig)
 
-  useEffect(() => { setPage(1) }, [search])
+  useEffect(() => { setPage(1) }, [search, topic])
 
   if (error) router.push('/500')
 
